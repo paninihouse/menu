@@ -8,7 +8,7 @@ import ArgumentParser
 
 @main
 struct menu: ParsableCommand {
-    mutating func run() throws {
-        print("Hello, world!")
-    }
+	mutating func run() throws {
+		print("Hello, world!")
+	}
 }
