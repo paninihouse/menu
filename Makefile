@@ -4,14 +4,14 @@ PREFIX ?= $(HOME)/.local
 build: .build/release/menu .build/plugins/GenerateManual/outputs/menu/menu.1
 
 .build/release/menu:
-	swift run -c release
+	swift build -c release
 
 .build/plugins/GenerateManual/outputs/menu/menu.1:
 	swift package generate-manual
 
 .PHONY: clean
 clean:
-	@rm -rf .build
+	@rm -rf .build .docc-build .docs
 
 .PHONY: install
 install: build
@@ -24,3 +24,11 @@ install: build
 uninstall:
 	@rm -f $(PREFIX)/bin/menu
 	@rm -f $(PREFIX)/share/man/man1/menu.1
+
+.PHONY: docs
+docs: .build/release/menu
+	@$(MAKE) -C Sources/menu/menu.docc build
+
+.PHONY: docs-preview
+docs-preview: .build/release/menu
+	@$(MAKE) -C Sources/menu/menu.docc preview

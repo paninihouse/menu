@@ -31,11 +31,11 @@ struct MenuView: View {
 			case .complete:
 				if let text = state.result { state.input = text }
 				return .handled
-			case .next:
-				state.next()
+			case .forward:
+				state.forward()
 				return .handled
-			case .previous:
-				state.previous()
+			case .backward:
+				state.backward()
 				return .handled
 			case nil:
 				return .ignored

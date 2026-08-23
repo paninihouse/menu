@@ -1,16 +1,5 @@
 import SwiftUI
 
-/// A status indicator shown at the trailing edge of the paginated list.
-///
-/// It combines a page-position arrow with an optional total-count counter:
-/// - ` [>] ` on the first page (no counter)
-/// - ` [<] ` on the last page (no counter)
-/// - ` [<>] ` on a middle page (no counter)
-/// - ` [10k] ` when the counter is enabled but only a single page is visible
-/// - ` [<> | 10k] ` when both the counter is enabled and multiple pages exist
-///
-/// The view is hidden when there is nothing to show (no counter and a single
-/// or unknown page).
 struct PageIndicatorView: View {
 	let pageStart: Int
 	let pageEnd: Int?

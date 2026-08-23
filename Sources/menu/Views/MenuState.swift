@@ -40,12 +40,12 @@ final class MenuState: ObservableObject {
 		self.choices = results.map(\.candidate)
 	}
 
-	func next() {
+	func forward() {
 		guard selection < choices.count - 1 else { return }
 		selection += 1
 	}
 
-	func previous() {
+	func backward() {
 		guard selection > 0 else { return }
 		selection -= 1
 	}

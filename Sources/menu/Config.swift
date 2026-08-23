@@ -66,10 +66,10 @@ enum Config {
 		.init(.return, .shift, action: .confirmInput),
 		.init(.escape, action: .quit),
 		.init(.tab, action: .complete),
-		.init("j", .control, action: .next),
-		.init("k", .control, action: .previous),
-		.init("l", .control, action: .next),
-		.init("h", .control, action: .previous),
+		.init("j", .control, action: .forward),
+		.init("k", .control, action: .backward),
+		.init("l", .control, action: .forward),
+		.init("h", .control, action: .backward),
 	]
 }
 
@@ -81,18 +81,18 @@ extension Config {
 	/// The behaviour for each case lives in ``MenuView``;
 	/// the config only decides *which* key performs *which* action.
 	enum Action {
-		/// Stop the menu and write the selected item to stdout.
+		/// Quit `menu` and write the selected string to `stdout`.
 		case confirm
-		/// Stop the menu and write the raw input to stdout.
+		/// Quit `menu` and write the raw input to `stdout`.
 		case confirmInput
-		/// Stop the menu without writing anything to stdout.
+		/// Quit `menu` without writing anything to `stdout`.
 		case quit
-		/// Replace the input with the currently selected item.
+		/// Replace input with the currently selected string.
 		case complete
-		/// Move the selection forward by one.
-		case next
-		/// Move the selection backward by one.
-		case previous
+		/// Move selection forward by one.
+		case forward
+		/// Move selection backward by one.
+		case backward
 	}
 
 	/// A single key binding: a key, optional modifiers, and the action it triggers.

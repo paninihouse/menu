@@ -1,20 +1,5 @@
 import SwiftUI
 
-// MARK: - ListView
-
-/// A horizontal, dmenu-style paginated list.
-///
-/// Items are laid out left-to-right and fill the available width. The visible
-/// window only changes (a "page swap") when the selection moves *past* one of
-/// its edges:
-///
-/// - Moving forward past the rightmost visible item swaps in a new page that
-///   starts at the newly selected item (which becomes the leftmost).
-/// - Moving backward past the leftmost visible item swaps in a new page that
-///   ends at the newly selected item (which becomes the rightmost).
-///
-/// While the selection stays within the current window the page is left
-/// untouched, so navigation within a page does not scroll.
 struct ListView: View {
 	@EnvironmentObject var state: MenuState
 	@Environment(\.fontResolutionContext) private var fontResolutionContext
