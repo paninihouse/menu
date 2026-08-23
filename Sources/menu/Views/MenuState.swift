@@ -39,14 +39,4 @@ final class MenuState: ObservableObject {
 		let results = matcher.topMatches(stdin, against: query)
 		self.choices = results.map(\.candidate)
 	}
-
-	func forward() {
-		guard selection < choices.count - 1 else { return }
-		selection += 1
-	}
-
-	func backward() {
-		guard selection > 0 else { return }
-		selection -= 1
-	}
 }

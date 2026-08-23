@@ -2,10 +2,11 @@ import AppKit
 import SwiftUI
 
 @MainActor
-final class AppDelegate: NSObject, NSApplicationDelegate {
+final class AppDelegate: NSObject, NSApplicationDelegate, KeyMonitorDelegate {
 	private var screen: NSScreen
 	private var position: Menu.Position
 	var state: MenuState
+	var keyMonitor: KeyMonitor!
 	private var window: MenuWindow!
 
 	init(screen: NSScreen, menu: Menu) {
@@ -17,6 +18,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 	}
 
 	func applicationDidFinishLaunching(_ notification: Notification) {
+		// Create the keyboard events monitor.
+		self.keyMonitor = KeyMonitor(delegate: self)
+
+		// Configure and present the window.
 		let frame = Screen.frame(screen, position: position, height: Config.height)
 		let window = MenuWindow(contentRect: frame)
 		window.contentView = NSHostingView(rootView: MenuView(state: self.state))
@@ -31,28 +36,23 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 		// NSApp.activate(ignoringOtherApps: true)
 		NSApp.activate(ignoringOtherApps: true)
 
-		NotificationCenter.default.addObserver(
-			self,
-			selector: #selector(stop),
-			name: .stop,
-			object: nil
-		)
+		// Start monitoring keyboard events.
+		keyMonitor.start()
 
+		// Quit right away if menu loses focus.
 		NotificationCenter.default.addObserver(
 			self,
-			selector: #selector(stop),
+			selector: #selector(quit),
 			name: NSWindow.didResignKeyNotification,
 			object: window
 		)
 	}
 
 	func applicationWillTerminate(_ notification: Notification) {
-		NotificationCenter.default.removeObserver(
-			self,
-			name: .stop,
-			object: nil
-		)
+		// Stop monitoring keyboard events.
+		keyMonitor.stop()
 
+		// Stop monitoring menu losing focus.
 		NotificationCenter.default.removeObserver(
 			self,
 			name: NSWindow.didResignKeyNotification,

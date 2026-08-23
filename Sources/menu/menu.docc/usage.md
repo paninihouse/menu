@@ -32,7 +32,7 @@ You can further customize the appearance and behaviour of *menu* thanks to the f
 | Action | Description | Binding |
 | --- | --- | --- |
 | `confirm` | Quit `menu` and write the selected string to `stdout`. | `Return` |
-| `confirmInput` | Quit `menu` and write the raw input to `stdout`. | `Shift + Return` |
+| `confirmInput` | Quit `menu` and write the raw input to `stdout`. | `Control + Return` |
 | `quit` | Quit `menu` without writing anything to `stdout`. | `Escape` |
 | `complete` | Replace input with the currently selected string. | `Tab` |
 | `forward` | Move selection forward by one. | `Control + j` |

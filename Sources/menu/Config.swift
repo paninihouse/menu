@@ -63,7 +63,7 @@ enum Config {
 	// `.numericPad`, `.capsLock`. They are matched exactly.
 	static let bindings: [Binding] = [
 		.init(.return, action: .confirm),
-		.init(.return, .shift, action: .confirmInput),
+		.init(.return, .control, action: .confirmInput),
 		.init(.escape, action: .quit),
 		.init(.tab, action: .complete),
 		.init("j", .control, action: .forward),
