@@ -3,13 +3,13 @@ import AppKit
 extension AppDelegate {
 	func confirm() {
 		if let result = state.result {
-			writeln(result, to: .standardOutput)
+			write(result, to: .standardOutput)
 		}
 		stopApp()
 	}
 
 	func confirmInput() {
-		writeln(state.input, to: .standardOutput)
+		write(state.input, to: .standardOutput)
 		stopApp()
 	}
 

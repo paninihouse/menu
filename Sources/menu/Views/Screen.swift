@@ -15,7 +15,7 @@ enum Screen {
 		} else if let screen = NSScreen.main {
 			return screen
 		} else {
-			write("No monitor founded", to: .standardError)
+			writeln("No monitor founded", to: .standardError)
 			throw ExitCode.failure
 		}
 	}
