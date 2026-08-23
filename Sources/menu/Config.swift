@@ -20,8 +20,7 @@ enum Config {
 	// E.g: `.custom("Comic Code", fixedSize: 14)`
 
 	/// The font used for all text in the menu.
-	// static let font: Font = .system(size: 14, weight: .regular, design: .monospaced)
-	static let font: Font = .custom("Comic code", fixedSize: 14)
+	static let font: Font = .system(size: 14, weight: .regular, design: .monospaced)
 
 	// NOTE: Customizing colors
 	//
@@ -32,25 +31,25 @@ enum Config {
 	// E.g: `.hex("#000000")`
 
 	/// The color used for texts.
-	static let foreground: Color = .hex("#aed3f3")
+	static let foreground: Color = .hex("#AED3F3")
 
 	/// The color used for the prompt.
-	static let subtle: Color = .hex("#aed3f3").opacity(0.5)
+	static let subtle: Color = .hex("#AED3F3").opacity(0.5)
 
 	/// The color used for the input cursor.
-	static let cursor: Color = .hex("#32a9fe")
+	static let cursor: Color = .hex("#32A9FE")
 
 	/// The color used for the menu background.
 	static let background: Color = .hex("#010408").opacity(0.825)
 
 	/// The color used for the selected item background.
-	static let selection: Color = .hex("#1f689d")
+	static let selection: Color = .hex("#1F689D")
 
 	/// The configuration used for fuzzy matching.
 	///
 	/// Check out the FuzzyMatch repo for usage details:
 	/// https://github.com/ordo-one/FuzzyMatch
-	static let matching: MatchConfig = .init(minScore: 0.7, algorithm: .editDistance(.default))
+	static let match: MatchConfig = .init(minScore: 0.7, algorithm: .editDistance(.default))
 
 	// NOTE: Customizing key bindings
 	//

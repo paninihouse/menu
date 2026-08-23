@@ -12,17 +12,17 @@ enum Config {
 
 	static let font: Font = .custom("My Awesome Font", fixedSize: 14)
 
-	static let foreground: Color   = .hex("#FFFFFF")
-	static let subtle: Color       = .hex("#FFFFFF").opacity(0.5)
-	static let cursor: Color       = .hex("#FFFFFF")
-	static let background: Color   = .hex("#000000").opacity(0.75)
-	static let selection: Color    = .hex("#FFFFFF")
+	static let foreground: Color   = .hex("#AED3F3")
+	static let subtle: Color       = .hex("#AED3F3").opacity(0.5)
+	static let cursor: Color       = .hex("#32A9FE")
+	static let background: Color   = .hex("#010408").opacity(0.825)
+	static let selection: Color    = .hex("#1F689D")
 
-	static let matching: MatchConfig = .init(minScore: 0.7, algorithm: .editDistance(.default))
+	static let match: MatchConfig = .init(minScore: 0.7, algorithm: .editDistance(.default))
 
 	static let bindings: [Binding] = [
 		.init(.return, action: .confirm),
-		.init(.return, .shift, action: .confirmInput),
+		.init(.return, .control, action: .confirmInput),
 		.init(.escape, action: .quit),
 		.init(.tab, action: .complete),
 		.init("j", .control, action: .forward),

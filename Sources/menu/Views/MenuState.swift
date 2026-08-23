@@ -34,7 +34,7 @@ final class MenuState: ObservableObject {
 			return
 		}
 
-		let matcher = FuzzyMatcher(config: Config.matching)
+		let matcher = FuzzyMatcher(config: Config.match)
 		let query = matcher.prepare(input)
 		let results = matcher.topMatches(stdin, against: query)
 		self.choices = results.map(\.candidate)
