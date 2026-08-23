@@ -59,28 +59,4 @@ final class AppDelegate: NSObject, NSApplicationDelegate, KeyMonitorDelegate {
 			object: window
 		)
 	}
-
-	@objc func stop(_ notification: Notification) {
-		if let result = notification.object as? String {
-			write(result, to: .standardOutput)
-		}
-
-		NSApp.stop(nil)
-		let event = NSEvent.otherEvent(
-			with: .applicationDefined,
-			location: .zero,
-			modifierFlags: [],
-			timestamp: 0,
-			windowNumber: 0,
-			context: nil,
-			subtype: 0,
-			data1: 0,
-			data2: 0
-		)
-		NSApp.postEvent(event!, atStart: true)
-	}
-}
-
-extension Notification.Name {
-	static let stop = Notification.Name("stop")
 }
