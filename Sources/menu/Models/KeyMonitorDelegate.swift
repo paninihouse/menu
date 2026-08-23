@@ -1,5 +1,6 @@
 import AppKit
 
+/// Defines the actions that can be performed with a key binding.
 @MainActor
 protocol KeyMonitorDelegate {
 	var state: MenuState { get }

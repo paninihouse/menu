@@ -36,6 +36,11 @@ echo "Apple\nBanana\nMango\nPeach" | menu
 
 - ``Menu``
 
+### Models
+
+- ``KeyMonitor``
+- ``KeyMonitorDelegate``
+
 ### Views
 
 - ``AppDelegate``

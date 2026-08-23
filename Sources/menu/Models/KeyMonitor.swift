@@ -1,6 +1,7 @@
 import AppKit
 import SwiftUI
 
+/// Monitors keyboard events and runs the appropriate actions.
 @MainActor
 final class KeyMonitor {
 	private var eventMonitor: Any?
