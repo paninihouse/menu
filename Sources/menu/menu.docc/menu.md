@@ -4,6 +4,8 @@ Dynamic menu for the Mac.
 
 ## Overview
 
+![menu](menu.png)
+
 *menu* reads a list of newline-separated items from stdin and presents them to the user.
 When the user selects an item and presses Return, their choice is printed to stdout and the menu terminated.
 Entering text will narrow the items to those matching the tokens in the input.
