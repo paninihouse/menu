@@ -3,6 +3,7 @@ import SwiftUI
 
 struct InputView: View {
 	@EnvironmentObject var state: MenuState
+	@EnvironmentObject var list: ListState
 	@Environment(\.fontResolutionContext) private var fontResolutionContext
 
 	@State private var cursorHeight: CGFloat?
@@ -20,14 +21,20 @@ struct InputView: View {
 			if let prompt = state.prompt, state.input.isEmpty {
 				HStack(spacing: 0) {
 					Text(" ")
-					TextView(prompt, style: .subtle)
+					Text(prompt)
+						.foregroundStyle(Config.subtle)
+						.lineLimit(1)
+						.truncationMode(.head)
 					Text(" ")
 				}
 			}
 
 			HStack(spacing: 0) {
 				Text(" ")
-				TextView(state.input, truncate: .head)
+				Text(state.input)
+					.foregroundStyle(Config.foreground)
+					.lineLimit(1)
+					.truncationMode(.head)
 				Rectangle()
 					.foregroundStyle(Config.cursor)
 					.frame(width: 1, height: cursorHeight)
@@ -35,7 +42,7 @@ struct InputView: View {
 				Text(" ")
 			}
 		}
-		.frame(width: state.stdin.isEmpty ? .infinity : 300)
+		.frame(width: state.stdin.isEmpty || list.isVertical ? .infinity : 300)
 		.task {
 			let font = Config.font.resolve(in: fontResolutionContext).ctFont as NSFont
 			cursorHeight = NSString(" ").size(withAttributes: [.font: font]).height

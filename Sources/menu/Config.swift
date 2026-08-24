@@ -20,7 +20,8 @@ enum Config {
 	// E.g: `.custom("Comic Code", fixedSize: 14)`
 
 	/// The font used for all text in the menu.
-	static let font: Font = .system(size: 14, weight: .regular, design: .monospaced)
+	// static let font: Font = .system(size: 14, weight: .regular, design: .monospaced)
+	static let font: Font = .custom("Comic Code", fixedSize: 14)
 
 	// NOTE: Customizing colors
 	//
@@ -40,7 +41,7 @@ enum Config {
 	static let cursor: Color = .hex("#32A9FE")
 
 	/// The color used for the menu background.
-	static let background: Color = .hex("#010408").opacity(0.825)
+	static let background: Color = .hex("#010408")
 
 	/// The color used for the selected item background.
 	static let selection: Color = .hex("#1F689D")

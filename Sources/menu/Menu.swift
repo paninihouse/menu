@@ -14,6 +14,9 @@ struct Menu: ParsableCommand {
 		version: "1.0.0"
 	)
 
+	@Option(name: .shortAndLong, help: "List choices vertically, with the given number of lines.")
+	var lines: Int?
+
 	@Flag(exclusivity: .chooseLast, help: "Define the position of the menu on the screen.")
 	var position: Position = .top
 

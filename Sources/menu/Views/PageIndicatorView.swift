@@ -8,7 +8,9 @@ struct PageIndicatorView: View {
 
 	var body: some View {
 		if let text {
-			TextView(text, style: .subtle)
+			Text(text)
+				.foregroundStyle(Config.subtle)
+				.lineLimit(1)
 		}
 	}
 

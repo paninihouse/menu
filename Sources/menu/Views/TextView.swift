@@ -34,11 +34,15 @@ struct TextView: View {
 	}
 
 	var body: some View {
-		Text(string)
-			.frame(height: Config.height)
-			.foregroundStyle(foreground)
-			.background(background)
-			.lineLimit(1)
-			.truncationMode(truncate)
+		ZStack(alignment: .leading) {
+			Rectangle()
+				.foregroundStyle(background)
+
+			Text(string)
+				.foregroundStyle(foreground)
+				.lineLimit(1)
+				.truncationMode(truncate)
+		}
+		.frame(height: Config.height)
 	}
 }
