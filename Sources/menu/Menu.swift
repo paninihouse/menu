@@ -18,7 +18,7 @@ struct Menu: ParsableCommand {
 	var lines: Int?
 
 	@Flag(exclusivity: .chooseLast, help: "Define the position of the menu on the screen.")
-	var position: Position = .top
+	var position: Config.Position = .top
 
 	@Option(name: .shortAndLong, help: "Define the prompt to be displayed before the input.")
 	var prompt: String?
@@ -40,21 +40,6 @@ struct Menu: ParsableCommand {
 			app.run()
 
 			throw ExitCode.success
-		}
-	}
-}
-
-extension Menu {
-	/// The menu position on the screen.
-	enum Position: String, EnumerableFlag {
-		/// Anchor the menu at the top of the screen.
-		case top
-
-		/// Anchor the menu at the bottom of the screen.
-		case bottom
-
-		static func name(for value: Menu.Position) -> NameSpecification {
-			return .shortAndLong
 		}
 	}
 }

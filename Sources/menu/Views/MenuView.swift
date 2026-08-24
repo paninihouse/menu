@@ -6,9 +6,9 @@ struct MenuView: View {
 
 	@Environment(\.fontResolutionContext) private var fontResolutionContext
 
-	private let position: Menu.Position
+	private let position: Config.Position
 
-	init(state: MenuState, position: Menu.Position) {
+	init(state: MenuState, position: Config.Position) {
 		_state = StateObject(wrappedValue: state)
 		_listState = StateObject(wrappedValue: ListState(menuState: state))
 		self.position = position

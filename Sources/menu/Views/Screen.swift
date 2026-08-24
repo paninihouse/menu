@@ -20,6 +20,24 @@ enum Screen {
 		}
 	}
 
+	/// Computes the menu height for a given number of choices: a single
+	/// line for the inline style, or the input line plus one row per visible
+	/// line (up to `lines`) for the vertical style. When there are no choices,
+	/// only the input line is shown.
+	///
+	/// - Parameters:
+	///   - choices: The number of choices currently presented.
+	///   - lines: The maximum number of lines in the vertical style, or `nil`
+	///           for the inline (single-row) style.
+	/// - Returns: The menu height in points.
+	static func menuHeight(choices: Int, lines: Int?) -> CGFloat {
+		if let lines, lines > 0 {
+			let visible = choices > 0 ? min(lines, choices) : 0
+			return Config.height * CGFloat(visible + 1)
+		}
+		return Config.height
+	}
+
 	/// Frame of the menu within a screen, in global display coordinates.
 	///
 	/// - Parameters:
@@ -31,7 +49,7 @@ enum Screen {
 	/// - Returns: An NSRect in screen coordinates. The menu spans
 	///            the full width of the screen and is anchored at the top
 	///            or bottom edge.
-	static func frame(_ screen: NSScreen, position: Menu.Position, height: CGFloat) -> NSRect {
+	static func frame(_ screen: NSScreen, position: Config.Position, height: CGFloat) -> NSRect {
 		switch position {
 		case .top:
 			return NSRect(

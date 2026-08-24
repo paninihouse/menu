@@ -15,7 +15,7 @@ Patches keep the core of *menu* minimal and focused, while allowing anyone to ex
 A patch is distributed as a `.patch` file and applied with the `patch` command.
 The file contains a diff of the changes needed to add a specific feature.
 
-For example, to apply a patch from the *bar* collection:
+For example, to apply a patch from the *menu* collection:
 
 ```shell
 curl -sL https://raw.githubusercontent.com/paninihouse/menu/refs/heads/master/patches/patch-font_offset-20260810-11d813c.patch | patch -p1

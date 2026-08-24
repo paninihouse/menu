@@ -1,3 +1,4 @@
+import ArgumentParser
 import FuzzyMatch
 import SwiftUI
 
@@ -76,6 +77,22 @@ enum Config {
 // MARK: Types reference
 
 extension Config {
+	/// The menu position on the screen.
+	///
+	/// Used both as the CLI flag value (see ``Menu``) and by the window
+	/// layout code (see ``Screen``).
+	enum Position: String, EnumerableFlag {
+		/// Anchor the menu at the top of the screen.
+		case top
+
+		/// Anchor the menu at the bottom of the screen.
+		case bottom
+
+		static func name(for value: Config.Position) -> NameSpecification {
+			return .shortAndLong
+		}
+	}
+
 	/// An abstract action that a key binding can trigger.
 	///
 	/// The behaviour for each case lives in ``MenuView``;
