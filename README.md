@@ -25,7 +25,7 @@ At the end, everyone will have their own *menu*.
 - **Dead simple** — *menu* always looks for simplicity, both in usage and in the source code.
 It just does the very basics very well; everything else is left out.
 It doesn't even include a visible text field.
-- **Easy to understand** — *menu*'s codebase is just ~1200 lines of Swift, wrapped in a ton of comments.
+- **Easy to understand** — *menu*'s codebase is just ~700 lines of Swift, wrapped in a ton of comments.
 Everything is explained so you can truly own the codebase and customise it as you see fit.
 
 > This is not software you install, run, and forget about.
