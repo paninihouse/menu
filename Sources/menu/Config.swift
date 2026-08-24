@@ -21,8 +21,7 @@ enum Config {
 	// E.g: `.custom("Comic Code", fixedSize: 14)`
 
 	/// The font used for all text in the menu.
-	// static let font: Font = .system(size: 14, weight: .regular, design: .monospaced)
-	static let font: Font = .custom("Comic Code", fixedSize: 14)
+	static let font: Font = .system(size: 14, weight: .regular, design: .monospaced)
 
 	// NOTE: Customizing colors
 	//
