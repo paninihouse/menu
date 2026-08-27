@@ -28,6 +28,43 @@ func readLines(strippingNewline: Bool = true) -> [String] {
 	return lines
 }
 
+/// Replaces `\uXXXX` escape sequences (4 hex digits) in a string with the
+/// Unicode scalars they represent, so that text coming from `stdin` can carry
+/// arbitrary codepoints — handy for SF Symbols and other glyphs that are hard
+/// to type in a shell.
+///
+/// Swift's `\u{...}` is a compile-time escape and only works inside source
+/// literals; this runs on *runtime* text and therefore is the only way such a
+/// sequence typed in a shell reaches the menu as an actual Unicode scalar.
+/// Malformed escapes (fewer than 4 hex digits) are left verbatim.
+func unescape(_ string: String) -> String {
+	let hexDigits: Set<Character> = Set("0123456789abcdefABCDEF")
+
+	var output = ""
+	var chars = string.makeIterator()
+
+	while let c = chars.next() {
+		guard c == "\\" else { output.append(c); continue }
+		guard let next = chars.next() else { output.append(c); break }
+
+		guard next == "u" else {
+			output.append("\\"); output.append(next)
+			continue
+		}
+
+		var hex = ""
+		while hex.count < 4, let h = chars.next(), hexDigits.contains(h) { hex.append(h) }
+
+		if hex.count == 4, let value = UInt32(hex, radix: 16), let scalar = Unicode.Scalar(value) {
+			output.unicodeScalars.append(scalar)
+		} else {
+			output.append("\\u"); output.append(hex)
+		}
+	}
+
+	return output
+}
+
 /// Write data to the provided handle.
 /// - Parameters:
 ///   - data: The data to write.

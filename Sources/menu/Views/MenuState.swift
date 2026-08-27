@@ -25,7 +25,7 @@ final class MenuState: ObservableObject {
 		self.counter = counter
 		self.outline = outline
 		self.lines = lines
-		self.stdin = readLines()
+		self.stdin = readLines().map(unescape)
 		self.choices = stdin
 	}
 
