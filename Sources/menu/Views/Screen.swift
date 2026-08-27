@@ -44,27 +44,48 @@ enum Screen {
 	///   - screen: The screen to calculate the menu frame for.
 	///   - position: Whether the menu sits at the top or bottom
 	///               of the screen.
+	///   - spotlight: Whether the menu sits at the center
+	///                of the screen.
+	///   - width: The menu width width in points. Automatically set
+	///            to the screen width if not provided.
 	///   - height: The menu height in points (see ``Config/height``).
 	///
 	/// - Returns: An NSRect in screen coordinates. The menu spans
 	///            the full width of the screen and is anchored at the top
 	///            or bottom edge.
-	static func frame(_ screen: NSScreen, position: Config.Position, height: CGFloat) -> NSRect {
+	static func frame(
+		_ screen: NSScreen,
+		position: Config.Position,
+		spotlight: Bool,
+		width: CGFloat?,
+		height: CGFloat
+	) -> NSRect {
+		let width = width ?? screen.frame.width
+
+		if spotlight {
+			return NSRect(
+				x: screen.frame.midX - width / 2,
+				y: screen.frame.midY - height / 2,
+				width: width,
+				height: height
+			)
+		}
+
 		switch position {
-		case .top:
-			return NSRect(
-				x: screen.frame.minX,
-				y: screen.frame.maxY - height,
-				width: screen.frame.width,
-				height: height
-			)
-		case .bottom:
-			return NSRect(
-				x: screen.frame.minX,
-				y: screen.frame.minY,
-				width: screen.frame.width,
-				height: height
-			)
+			case .top:
+				return NSRect(
+					x: screen.frame.minX,
+					y: screen.frame.maxY - height,
+					width: width,
+					height: height
+				)
+			case .bottom:
+				return NSRect(
+					x: screen.frame.minX,
+					y: screen.frame.minY,
+					width: width,
+					height: height
+				)
 		}
 	}
 }

@@ -20,6 +20,9 @@ struct Menu: ParsableCommand {
 	@Flag(exclusivity: .chooseLast, help: "Define the position of the menu on the screen.")
 	var position: Config.Position = .top
 
+	@Option(name: .shortAndLong, help: .init("Display at the center of the screen, with the given max width.", valueName: "width"))
+	var spotlight: Int?
+
 	@Option(name: .shortAndLong, help: "Define the prompt to be displayed before the input.")
 	var prompt: String?
 

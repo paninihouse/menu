@@ -5,13 +5,17 @@ import SwiftUI
 final class AppDelegate: NSObject, NSApplicationDelegate, KeyMonitorDelegate {
 	private var screen: NSScreen
 	private var position: Config.Position
+	private var spotlight: Bool
+	private var width: CGFloat?
 	var state: MenuState
 	var keyMonitor: KeyMonitor!
 	private var window: MenuWindow!
 
 	init(screen: NSScreen, menu: Menu) {
 		self.screen = screen
-		self.position = menu.position
+		self.position = menu.spotlight != nil ? .top : menu.position
+		self.spotlight = menu.spotlight != nil
+		if let width = menu.spotlight { self.width = CGFloat(width) }
 		self.state = MenuState(prompt: menu.prompt, counter: menu.counter, lines: menu.lines)
 
 		super.init()
@@ -23,8 +27,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, KeyMonitorDelegate {
 
 		// Configure and present the window.
 		let height = Screen.menuHeight(choices: state.choices.count, lines: state.lines)
-		let frame = Screen.frame(screen, position: position, height: height)
-		let window = MenuWindow(contentRect: frame, screen: screen, position: position)
+		let frame = Screen.frame(screen, position: position, spotlight: spotlight, width: width, height: height)
+		let window = MenuWindow(contentRect: frame, screen: screen, position: position, spotlight: spotlight, width: width)
 		window.contentView = NSHostingView(rootView: MenuView(state: self.state, position: position))
 		window.makeKeyAndOrderFront(nil)
 		self.window = window
