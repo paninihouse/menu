@@ -43,6 +43,9 @@ enum Config {
 	/// The color used for the menu background.
 	static let background: Color = .hex("#010408")
 
+	/// The color used for the menu outline.
+	static let outline: Color = .hex("#1f689d")
+
 	/// The color used for the selected item background.
 	static let selection: Color = .hex("#1F689D")
 

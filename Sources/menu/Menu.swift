@@ -29,6 +29,9 @@ struct Menu: ParsableCommand {
 	@Flag(name: .shortAndLong, help: "Define the visibility of the counter.")
 	var counter: Bool = false
 
+	@Flag(name: .shortAndLong, help: "Define the visibility of the outline.")
+	var outline: Bool = false
+
 	@Option(name: .shortAndLong, help: "Display on the monitor number supplied.")
 	var monitor: Int = 0
 

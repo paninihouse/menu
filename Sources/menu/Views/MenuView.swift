@@ -25,6 +25,7 @@ struct MenuView: View {
 		.font(Config.font)
 		.foregroundStyle(Config.foreground)
 		.frame(maxWidth: .infinity)
+		.border(state.outline ? Config.outline : .clear)
 		.background(Config.background)
 		.environmentObject(state)
 		.environmentObject(listState)

@@ -5,6 +5,7 @@ import FuzzyMatch
 final class MenuState: ObservableObject {
 	let prompt: String?
 	let counter: Bool
+	let outline: Bool
 	let lines: Int?
 
 	let stdin: [String]
@@ -19,9 +20,10 @@ final class MenuState: ObservableObject {
 		return choices.indices.contains(selection) ? choices[selection] : nil
 	}
 
-	init(prompt: String?, counter: Bool, lines: Int?) {
+	init(prompt: String?, counter: Bool, outline: Bool, lines: Int?) {
 		self.prompt = prompt
 		self.counter = counter
+		self.outline = outline
 		self.lines = lines
 		self.stdin = readLines()
 		self.choices = stdin

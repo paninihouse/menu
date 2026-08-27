@@ -16,7 +16,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate, KeyMonitorDelegate {
 		self.position = menu.spotlight != nil ? .top : menu.position
 		self.spotlight = menu.spotlight != nil
 		if let width = menu.spotlight { self.width = CGFloat(width) }
-		self.state = MenuState(prompt: menu.prompt, counter: menu.counter, lines: menu.lines)
+		self.state = MenuState(
+			prompt: menu.prompt,
+			counter: menu.counter,
+			outline: menu.outline,
+			lines: menu.lines
+		)
 
 		super.init()
 	}
@@ -27,8 +32,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate, KeyMonitorDelegate {
 
 		// Configure and present the window.
 		let height = Screen.menuHeight(choices: state.choices.count, lines: state.lines)
-		let frame = Screen.frame(screen, position: position, spotlight: spotlight, width: width, height: height)
-		let window = MenuWindow(contentRect: frame, screen: screen, position: position, spotlight: spotlight, width: width)
+		let frame = Screen.frame(
+			screen, position: position, spotlight: spotlight, width: width, height: height)
+		let window = MenuWindow(
+			contentRect: frame, screen: screen, position: position, spotlight: spotlight, width: width)
 		window.contentView = NSHostingView(rootView: MenuView(state: self.state, position: position))
 		window.makeKeyAndOrderFront(nil)
 		self.window = window
