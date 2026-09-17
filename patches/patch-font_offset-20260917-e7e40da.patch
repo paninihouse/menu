@@ -1,0 +1,61 @@
+diff --git a/Sources/menu/Config.swift b/Sources/menu/Config.swift
+index c2c0607..cddc96f 100644
+--- a/Sources/menu/Config.swift
++++ b/Sources/menu/Config.swift
+@@ -23,6 +23,12 @@ enum Config {
+ 	/// The font used for all text in the menu.
+ 	static let font: Font = .system(size: 14, weight: .regular, design: .monospaced)
+ 
++	/// The vertical offset that can be used to adjust font centering.
++	///
++	/// A negative value will move the text upward, while a positive
++	/// value will move it downward.
++	static let fontOffset: Double = -0.5
++
+ 	// NOTE: Customizing colors
+ 	//
+ 	// You can use system default colors and the standard SwiftUI
+diff --git a/Sources/menu/Views/InputView.swift b/Sources/menu/Views/InputView.swift
+index 803a4f9..ccd138d 100644
+--- a/Sources/menu/Views/InputView.swift
++++ b/Sources/menu/Views/InputView.swift
+@@ -27,6 +27,7 @@ struct InputView: View {
+ 						.truncationMode(.head)
+ 					Text(" ")
+ 				}
++				.transformEffect(.init(translationX: 0, y: Config.fontOffset))
+ 			}
+ 
+ 			HStack(spacing: 0) {
+@@ -41,6 +42,7 @@ struct InputView: View {
+ 					.opacity(cursorVisible ? 1 : 0)
+ 				Text(" ")
+ 			}
++			.transformEffect(.init(translationX: 0, y: Config.fontOffset))
+ 		}
+ 		.frame(width: state.stdin.isEmpty || list.isVertical ? .infinity : 300)
+ 		.task {
+diff --git a/Sources/menu/Views/ListView.swift b/Sources/menu/Views/ListView.swift
+index 76d5d28..9f8f88e 100644
+--- a/Sources/menu/Views/ListView.swift
++++ b/Sources/menu/Views/ListView.swift
+@@ -30,6 +30,7 @@ struct ListView: View {
+ 							.foregroundStyle(Config.foreground)
+ 							.lineLimit(1)
+ 							.truncationMode(.tail)
++							.transformEffect(.init(translationX: 0, y: Config.fontOffset))
+ 					}
+ 					.fixedSize(horizontal: true, vertical: false)
+ 				}
+diff --git a/Sources/menu/Views/RowsListView.swift b/Sources/menu/Views/RowsListView.swift
+index 868ef10..c7a0fcb 100644
+--- a/Sources/menu/Views/RowsListView.swift
++++ b/Sources/menu/Views/RowsListView.swift
+@@ -24,6 +24,7 @@ struct RowsListView: View {
+ 						.foregroundStyle(Config.foreground)
+ 						.lineLimit(1)
+ 						.truncationMode(.tail)
++						.transformEffect(.init(translationX: 0, y: Config.fontOffset))
+ 				}
+ 				.frame(height: Config.height)
+ 			}
