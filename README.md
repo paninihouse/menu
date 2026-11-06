@@ -6,7 +6,7 @@
 </p>
 
 <p align="center">
-	<img alt="menu screenshot" src="Sources/menu/menu.docc/menu.png" width="100%">
+	<img alt="menu screenshot" src="https://raw.githubusercontent.com/paninihouse/bar/refs/heads/master/Sources/menu/menu.docc/menu.png" width="100%">
 </p>
 
 <p align="center">
